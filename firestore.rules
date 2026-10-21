@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // Public read-only vacancy and plan data. Only admin can write.
+    match /vacancies/{id} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    match /plans/{id} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Users can read their own profile, but cannot assign themselves admin.
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn() && request.auth.uid == uid
+        && !request.resource.data.keys().hasAny(['role']);
+      allow update, delete: if isAdmin();
+    }
+
+    // Payment claims: owner may create a limited pending claim; only admin can read/approve.
+    match /paymentClaims/{claimId} {
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == "pending"
+        && request.resource.data.amount is number
+        && request.resource.data.amount > 0
+        && request.resource.data.utr is string
+        && request.resource.data.utr.size() >= 6
+        && request.resource.data.keys().hasOnly([
+          'uid','email','planId','planName','amount','utr','period','status','createdAt'
+        ]);
+      allow read, update, delete: if isAdmin();
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

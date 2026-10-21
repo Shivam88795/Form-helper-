@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12315a">
+  <title>Government Form Helper | Sarkari Forms & Eligibility</title>
+  <meta name="description" content="Government job vacancy information, eligibility guidance and subscription-based form assistance. Independent private service, not a government website.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">GF</span><span>Government <b>Form Helper</b><small>Vacancy • Eligibility • Assistance</small></span></a>
+  <nav><a href="#vacancies">Vacancies</a><a href="#eligibility">Eligibility</a><a href="#plans">Plans</a><button id="loginOpen" class="btn btn-outline">Login</button></nav>
+</header>
+<div class="notice"><b>Independent private service:</b> This website is not affiliated with any government department. Verify vacancies and apply only through the official notification/portal.</div>
+<main>
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">YOUR SARKARI FORM COMPANION</span><h1>Government forms ko samjho.<br><em>Confidence ke saath apply karo.</em></h1><p>Vacancy details, basic eligibility guidance, document checklists aur subscription-based application assistance — ek hi jagah.</p><div class="hero-actions"><a class="btn btn-primary" href="#vacancies">Vacancies dekhein <span>↗</span></a><a class="btn btn-light" href="#eligibility">Eligibility check karein</a></div><div class="trust-row"><span>✓ Clear guidance</span><span>✓ Transparent pricing</span><span>✓ Privacy-conscious</span></div></div>
+  <div class="hero-card"><div class="card-top"><span class="mini-icon">▤</span><span class="live">GUIDANCE DESK</span></div><p class="muted">YOUR NEXT STEP</p><h3>Apply karne se pehle</h3><ul class="check-list"><li><span>✓</span> Official notification check karein</li><li><span>✓</span> Age & qualification verify karein</li><li><span>✓</span> Documents ready rakhein</li><li><span>✓</span> Last date confirm karein</li></ul><div class="card-foot"><span>Independent assistance</span><span>→</span></div></div>
+</section>
+<section class="stats"><div><b>Vacancy updates</b><span>Curated information</span></div><div><b>Eligibility guide</b><span>Preliminary checker</span></div><div><b>Member support</b><span>With active plan</span></div></section>
+<section id="vacancies" class="section">
+  <div class="section-head"><div><span class="eyebrow">LATEST OPPORTUNITIES</span><h2>Vacancy information</h2><p>Examples are clearly marked. Admin can add verified current openings.</p></div><div class="search"><span>⌕</span><input id="vacancySearch" placeholder="Search SSC, Railway, Police..."></div></div>
+  <div id="vacancyGrid" class="vacancy-grid"></div><p id="emptyVacancies" class="empty hidden">Koi vacancy match nahi hui.</p>
+</section>
+<section id="eligibility" class="section eligibility-section">
+ <div class="section-head"><div><span class="eyebrow">QUICK CHECK</span><h2>Basic eligibility checker</h2><p>Yeh preliminary guide hai, official eligibility decision nahi.</p></div></div>
+ <div class="eligibility-layout"><div class="eligibility-form">
+  <label>Age (years)<input id="age" type="number" min="0" max="100" placeholder="e.g. 18"></label>
+  <label>Highest qualification<select id="qualification"><option value="">Select qualification</option><option>10th pass</option><option>12th pass</option><option>Diploma</option><option>Graduate</option><option>Postgraduate</option></select></label>
+  <label>Interest area<select id="sector"><option value="">Select category</option><option>SSC / Clerical</option><option>Railway</option><option>Police / Defence</option><option>State Government</option></select></label>
+  <button class="btn btn-primary" id="checkEligibility">Check guidance</button><p class="fine">Age relaxations, nationality, physical standards, subject requirements and cut-off dates vary by notification.</p>
+ </div><div id="eligibilityResult" class="result-panel"><span class="result-icon">✓</span><h3>Start with the basics</h3><p>Apni details select karein. Hum aapko next steps batayenge, guaranteed eligibility nahi.</p></div></div>
+</section>
+<section id="plans" class="section plans-section">
+ <div class="section-head center"><div><span class="eyebrow">MEMBERSHIP</span><h2>Choose your assistance plan</h2><p>Sample prices — admin apne business ke hisaab se update kare.</p></div></div>
+ <div id="planGrid" class="plan-grid"></div>
+ <div class="payment-note"><span class="upi-symbol">₹</span><div><b>UPI / QR payment</b><p>Checkout par payment instructions aur QR dikh sakta hai. Access sirf payment verify hone ke baad activate hoga; screenshot alone proof nahi hai.</p></div></div>
+</section>
+<section class="section steps-section"><div class="section-head"><div><span class="eyebrow">HOW IT WORKS</span><h2>Simple, transparent process</h2></div></div><div class="steps"><div><span>01</span><h3>Account banayein</h3><p>Email/password se sign in karein.</p></div><div><span>02</span><h3>Plan choose karein</h3><p>Plan details aur payment instructions dekhein.</p></div><div><span>03</span><h3>Verification</h3><p>Admin payment verify karke membership approve karega.</p></div></div></section>
+</main>
+<footer><div class="footer-brand"><span class="brand-icon">GF</span><b>Government Form Helper</b></div><p>Independent private information and assistance service. Not a government website, recruitment agency, or official authority.</p><div class="footer-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:help@example.com">Contact</a></div><small>© <span id="year"></span> Government Form Helper. Replace placeholder contact details before launch.</small></footer>
+<div id="toast" class="toast" role="status"></div>
+<dialog id="authDialog" class="modal"><button class="close" data-close="authDialog" aria-label="Close">×</button><span class="eyebrow">MEMBER ACCESS</span><h2 id="authTitle">Login</h2><form id="authForm"><label>Email<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input id="authPassword" type="password" minlength="8" autocomplete="current-password" required placeholder="At least 8 characters"></label><button class="btn btn-primary full" id="authSubmit">Login</button></form><p class="fine">Demo mode: account login tabhi kaam karega jab Firebase configure kiya ho.</p><button id="authToggle" class="text-btn">New here? Create account</button></dialog>
+<dialog id="checkoutDialog" class="modal"><button class="close" data-close="checkoutDialog" aria-label="Close">×</button><span class="eyebrow">SECURE CHECKOUT FLOW</span><h2 id="checkoutTitle">Membership checkout</h2><div id="checkoutContent"></div></dialog>
+<script type="module" src="app.js"></script>
+</body></html>
